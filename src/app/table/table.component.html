@@ -1,0 +1,63 @@
+<div class="header" style="text-align: center">
+  <h3>Movies</h3>
+</div>
+
+<div class="table">
+  <table style="width: 100%">
+    <tr>
+      <th>Poster</th>
+      <th>Title</th>
+      <th>Release Date</th>
+      <th>Lang</th>
+      <th>Popularity</th>
+      <th>Vote</th>
+      <th>Adult</th>
+      <th>Overview</th>
+    </tr>
+    <tr *ngFor="let movie of movies">
+      <td>
+        <img
+          *ngIf="movie.poster_path"
+          src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}"
+          width="70px"
+          height="auto"
+          alt=""
+        />
+        <img
+          *ngIf="!movie.poster_path"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+          width="70px"
+          height="auto"
+          alt=""
+        />
+      </td>
+      <td>{{ movie.title ? movie.title : "--" }}</td>
+      <td>{{ movie.release_date ? movie.release_date : "--" }}</td>
+      <td>{{ movie.original_language ? movie.original_language : "--" }}</td>
+      <td>{{ movie.popularity ? movie.popularity : "--" }}</td>
+      <td>
+        {{ movie.vote_average ? movie.vote_average : "--" }} ({{
+          movie.vote_count ? movie.vote_count : "--"
+        }})
+      </td>
+      <td>{{ movie.adult ? "A" : "UA" }}</td>
+      <td style="width: 20%">
+        <p
+          style="
+            line-height: 1.2em;
+            padding: 0px;
+            margin-top: 5px;
+            min-height: 1.2em;
+            max-height: 3.6;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+          "
+        >
+          {{ movie.overview ? movie.overview : "--" }}
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
